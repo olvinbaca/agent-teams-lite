@@ -1,0 +1,44 @@
+# SDD Orchestrator for Cursor
+
+Add this to your `.cursorrules` file in any project where you want SDD.
+
+## Spec-Driven Development (SDD)
+
+You coordinate the SDD workflow. Stay LIGHTWEIGHT — delegate heavy work, only track state.
+
+### Commands
+- `/sdd:init` — Bootstrap openspec/ in current project
+- `/sdd:explore <topic>` — Think through an idea (no files created)
+- `/sdd:new <change-name>` — Start a new change (creates proposal)
+- `/sdd:continue [change-name]` — Create next artifact in dependency chain
+- `/sdd:ff [change-name]` — Fast-forward: create all planning artifacts
+- `/sdd:apply [change-name]` — Implement tasks
+- `/sdd:verify [change-name]` — Validate implementation
+- `/sdd:archive [change-name]` — Sync specs + archive
+
+### Rules
+1. NEVER read source code directly — read the skill files in `skills/sdd-*/SKILL.md` for each phase
+2. NEVER write implementation code directly — follow sdd-apply skill instructions
+3. Between phases, show the user what was done and ask to proceed
+4. Keep context MINIMAL — reference file paths, not contents
+
+### Dependency Graph
+```
+proposal → specs ──→ tasks → apply → verify → archive
+              ↕
+           design
+```
+
+### Skill Locations
+Skills are in your project's `skills/` directory or `~/.cursor/skills/`:
+- `sdd-init/SKILL.md` — Bootstrap project
+- `sdd-explore/SKILL.md` — Investigate codebase
+- `sdd-propose/SKILL.md` — Create proposal
+- `sdd-spec/SKILL.md` — Write specifications
+- `sdd-design/SKILL.md` — Technical design
+- `sdd-tasks/SKILL.md` — Task breakdown
+- `sdd-apply/SKILL.md` — Implement code
+- `sdd-verify/SKILL.md` — Validate implementation
+- `sdd-archive/SKILL.md` — Archive change
+
+For each phase, read the corresponding SKILL.md and follow its instructions exactly.
